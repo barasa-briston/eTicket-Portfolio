@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eTicket System Portfolio | Enterprise Service Management</title>
+    <meta name="description" content="Professional portfolio showcase of the eTicket System - a premium enterprise help desk and workflow automation platform.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#0f172a',
+                            light: '#1e293b',
+                            dark: '#020617',
+                        },
+                        gold: {
+                            DEFAULT: '#d4af37',
+                            light: '#f1d592',
+                            dark: '#997b20',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
+                        'outfit': ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .laptop-wrapper {
+            perspective: 1000px;
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .laptop-container {
+            width: 100%;
+            max-width: 850px;
+            position: relative;
+        }
+        .laptop-screen-bezel {
+            background: #000;
+            border-radius: 12px 12px 0 0;
+            padding: 10px; /* Slim bezels */
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 2;
+        }
+        .laptop-display {
+            background: #111;
+            border-radius: 4px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            position: relative;
+        }
+        .laptop-display img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill; /* Exact fit edge-to-edge as requested */
+            display: block;
+        }
+        /* Glossy Reflection Overlay */
+        .laptop-display::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.02) 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+        .laptop-body {
+            width: 104%;
+            margin-left: -2%;
+            height: 14px;
+            background: linear-gradient(to bottom, #2d2d2d 0%, #1a1a1a 100%);
+            border-bottom: 2px solid #000;
+            border-radius: 0 0 15px 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .laptop-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 6px;
+            background: #111;
+            border-radius: 0 0 8px 8px;
+        }
+        .laptop-shadow {
+            position: absolute;
+            bottom: -30px;
+            left: 5%;
+            width: 90%;
+            height: 20px;
+            background: rgba(0,0,0,0.4);
+            filter: blur(25px);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #d4af37 0%, #f1d592 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-navy font-sans selection:bg-gold selection:text-white overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center text-gold font-bold text-xl">eT</div>
+                <span class="text-xl font-outfit font-bold tracking-tight">eTicket <span class="text-slate-400 font-light">System</span></span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#overview" class="hover:text-navy transition-colors">Overview</a>
+                <a href="#modules" class="hover:text-navy transition-colors">Modules</a>
+                <a href="#architecture" class="hover:text-navy transition-colors">Architecture</a>
+                <a href="#results" class="hover:text-navy transition-colors">Impact</a>
+                <a href="#contact" class="px-5 py-2.5 bg-navy text-white rounded-full hover:bg-navy-light transition-all shadow-lg shadow-navy/20">Contact Developer</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-navy overflow-hidden">
+        <!-- Background Accents -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gold/5 to-transparent"></div>
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-gold/10 rounded-full blur-[120px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center lg:text-left flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2 space-y-8">
+                <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-bold uppercase tracking-widest animate-fade-in">
+                    Enterprise Solution Portfolio
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-outfit font-extrabold text-white leading-tight animate-fade-in" style="animation-delay: 0.1s">
+                    eTicket System <span class="gold-gradient-text">Portfolio</span>
+                </h1>
+                <p class="text-xl text-slate-300 font-light leading-relaxed animate-fade-in" style="animation-delay: 0.2s">
+                    Enterprise Help Desk, Ticketing & Workflow Automation Platform Developed for Modern Institutional Service Delivery.
+                </p>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 text-left animate-fade-in" style="animation-delay: 0.3s">
+                    <div class="text-white/80 text-sm flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Issue Reporting
+                    </div>
+                    <div class="text-white/80 text-sm flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Intelligent Routing
+                    </div>
+                    <div class="text-white/80 text-sm flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        SLA Monitoring
+                    </div>
+                    <div class="text-white/80 text-sm flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Workflow Automation
+                    </div>
+                    <div class="text-white/80 text-sm flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Reporting
+                    </div>
+                    <div class="text-white/80 text-sm flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Analytics
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4 animate-fade-in" style="animation-delay: 0.4s">
+                    <a href="#overview" class="px-8 py-4 bg-white text-navy font-bold rounded-full hover:bg-slate-100 transition-all shadow-xl shadow-white/10">Explore Project</a>
+                    <a href="#showcase" class="px-8 py-4 bg-transparent border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-all">View Screenshots</a>
+                    <a href="#architecture" class="px-8 py-4 bg-transparent border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-all">System Architecture</a>
+                </div>
+            </div>
+            <div class="lg:w-1/2 animate-fade-in" style="animation-delay: 0.5s">
+                <div class="laptop-wrapper">
+                    <div class="laptop-container">
+                        <div class="laptop-screen-bezel">
+                            <div class="laptop-display">
+                                <img src="assets/dashboard.png" alt="System Dashboard">
+                            </div>
+                        </div>
+                        <div class="laptop-body">
+                            <div class="laptop-notch"></div>
+                        </div>
+                        <div class="laptop-shadow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT OVERVIEW -->
+    <section id="overview" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16 items-start">
+                <div class="lg:w-1/3 sticky top-32">
+                    <h2 class="text-sm font-bold text-gold uppercase tracking-[0.2em] mb-4">Project Details</h2>
+                    <h3 class="text-4xl font-outfit font-bold text-navy mb-8">Comprehensive Case Study</h3>
+                    <div class="space-y-6">
+                        <div class="border-b border-slate-100 pb-4">
+                            <p class="text-xs text-slate-400 font-bold uppercase mb-1">Client / Institution</p>
+                            <p class="text-navy font-semibold">Crescentech College (Modernization Initiative)</p>
+                        </div>
+                        <div class="border-b border-slate-100 pb-4">
+                            <p class="text-xs text-slate-400 font-bold uppercase mb-1">Project Type</p>
+                            <p class="text-navy font-semibold">Custom Enterprise Workflow Platform</p>
+                        </div>
+                        <div class="border-b border-slate-100 pb-4">
+                            <p class="text-xs text-slate-400 font-bold uppercase mb-1">Technology Stack</p>
+                            <p class="text-navy font-semibold">Python, Django, PostgreSQL, Bootstrap 5, Chart.js</p>
+                        </div>
+                        <div class="border-b border-slate-100 pb-4">
+                            <p class="text-xs text-slate-400 font-bold uppercase mb-1">Deployment</p>
+                            <p class="text-navy font-semibold">Linux / Docker Environment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-2/3">
+                    <div class="bg-slate-50 rounded-3xl p-8 lg:p-12 mb-12">
+                        <p class="text-lg text-slate-600 leading-relaxed italic mb-8">
+                            "The Crescentech College Help Desk System is a purpose-built ticketing and reporting intelligence suite designed to modernize institutional communication and ensure compliance with service standards."
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+                                <h4 class="font-bold text-navy mb-3">Institutional Workspace</h4>
+                                <p class="text-sm text-slate-500">Bespoke UI architecture with a dark-theme institutional sidebar and a high-contrast dashboard workspace for maximum clarity.</p>
+                            </div>
+                            <div class="p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+                                <h4 class="font-bold text-navy mb-3">Analytics Command Center</h4>
+                                <p class="text-sm text-slate-500">High-fidelity administrative cockpit providing real-time oversight of institutional health and capacity tracking.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="text-center p-6 bg-navy text-white rounded-2xl">
+                            <div class="text-3xl font-bold text-gold mb-1">95%+</div>
+                            <div class="text-[10px] uppercase font-bold tracking-widest text-white/50">SLA Target</div>
+                        </div>
+                        <div class="text-center p-6 bg-white border border-slate-200 rounded-2xl">
+                            <div class="text-3xl font-bold text-navy mb-1">5</div>
+                            <div class="text-[10px] uppercase font-bold tracking-widest text-slate-400">User Tiers</div>
+                        </div>
+                        <div class="text-center p-6 bg-white border border-slate-200 rounded-2xl">
+                            <div class="text-3xl font-bold text-navy mb-1">24h</div>
+                            <div class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Auto Closure</div>
+                        </div>
+                        <div class="text-center p-6 bg-white border border-slate-200 rounded-2xl">
+                            <div class="text-3xl font-bold text-navy mb-1">∞</div>
+                            <div class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Scalability</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHALLENGE / PROBLEM -->
+    <section class="py-24 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-center text-sm font-bold text-gold uppercase tracking-[0.2em] mb-4">Strategic Transformation</h2>
+            <h3 class="text-center text-4xl font-outfit font-bold text-navy mb-16">Challenges & Solutions</h3>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Before -->
+                <div class="bg-white p-8 lg:p-12 rounded-[2rem] shadow-xl shadow-slate-200/50">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-red-50 text-red-500 rounded-xl flex items-center justify-center font-bold">01</div>
+                        <h4 class="text-2xl font-bold text-slate-800">Before Digitalization</h4>
+                    </div>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1.5 w-5 h-5 bg-red-100 text-red-500 rounded-full flex items-center justify-center shrink-0">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-navy">Manual & Fragmented Processes</p>
+                                <p class="text-sm text-slate-500">Service requests were handled via loose papers and phone calls with no central record.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1.5 w-5 h-5 bg-red-100 text-red-500 rounded-full flex items-center justify-center shrink-0">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-navy">Accountability Gaps</p>
+                                <p class="text-sm text-slate-500">Unable to track who was assigned to what, leading to delays and missing accountability.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1.5 w-5 h-5 bg-red-100 text-red-500 rounded-full flex items-center justify-center shrink-0">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-navy">Non-Existent Reporting</p>
+                                <p class="text-sm text-slate-500">Institutional performance was a "blind spot" with no data to drive service improvements.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- After -->
+                <div class="bg-navy p-8 lg:p-12 rounded-[2rem] shadow-xl shadow-navy/20 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full translate-x-10 -translate-y-10 blur-3xl"></div>
+                    <div class="flex items-center gap-4 mb-8 text-white">
+                        <div class="w-12 h-12 bg-gold text-navy rounded-xl flex items-center justify-center font-bold">02</div>
+                        <h4 class="text-2xl font-bold">After Implementation</h4>
+                    </div>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1.5 w-5 h-5 bg-gold/20 text-gold rounded-full flex items-center justify-center shrink-0">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Centralized Command & Control</p>
+                                <p class="text-sm text-slate-400">Single institutional ecosystem for all support requests, providing total transparency.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1.5 w-5 h-5 bg-gold/20 text-gold rounded-full flex items-center justify-center shrink-0">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Automated Workflow & SLA</p>
+                                <p class="text-sm text-slate-400">Integrated logic for automatic routing, reminders, and resolution tracking against targets.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1.5 w-5 h-5 bg-gold/20 text-gold rounded-full flex items-center justify-center shrink-0">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">High-Fidelity Intelligence</p>
+                                <p class="text-sm text-slate-400">Board-ready analytics and real-time KPI monitoring to drive institutional growth.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYSTEM MODULES -->
+    <section id="modules" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-sm font-bold text-gold uppercase tracking-[0.2em] mb-4 text-center">Engine Features</h2>
+            <h3 class="text-4xl font-outfit font-bold text-navy mb-16 text-center">System Integrated Modules</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Module Card -->
+                <div class="group p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-navy hover:text-white transition-all duration-300">
+                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-gold group-hover:text-navy rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 font-outfit">Dashboard</h4>
+                    <p class="text-sm text-slate-500 group-hover:text-slate-400">Real-time command center for administrative oversight.</p>
+                </div>
+                <div class="group p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-navy hover:text-white transition-all duration-300">
+                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-gold group-hover:text-navy rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 font-outfit">Ticket Submission</h4>
+                    <p class="text-sm text-slate-500 group-hover:text-slate-400">Streamlined request portal for guests and staff.</p>
+                </div>
+                <div class="group p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-navy hover:text-white transition-all duration-300">
+                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-gold group-hover:text-navy rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 font-outfit">Assignment Engine</h4>
+                    <p class="text-sm text-slate-500 group-hover:text-slate-400">Automated routing to appropriate technical units.</p>
+                </div>
+                <div class="group p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-navy hover:text-white transition-all duration-300">
+                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-gold group-hover:text-navy rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 font-outfit">SLA Tracking</h4>
+                    <p class="text-sm text-slate-500 group-hover:text-slate-400">Continuous monitoring of resolution speed.</p>
+                </div>
+                <!-- Row 2 -->
+                <div class="group p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-navy hover:text-white transition-all duration-300">
+                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-gold group-hover:text-navy rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 font-outfit">Reporting Engine</h4>
+                    <p class="text-sm text-slate-500 group-hover:text-slate-400">Exportable board-ready data and analytics.</p>
+                </div>
+                <div class="group p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-navy hover:text-white transition-all duration-300">
+                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-gold group-hover:text-navy rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012-2"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 font-outfit">Audit Trail</h4>
+                    <p class="text-sm text-slate-500 group-hover:text-slate-400">100% accountability via status history tracking.</p>
+                </div>
+                <div class="group p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-navy hover:text-white transition-all duration-300">
+                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-gold group-hover:text-navy rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 font-outfit">Notification Center</h4>
+                    <p class="text-sm text-slate-500 group-hover:text-slate-400">Integrated alerts for state changes and tasks.</p>
+                </div>
+                <div class="group p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-navy hover:text-white transition-all duration-300">
+                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-gold group-hover:text-navy rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-1.247-11.822A8.962 8.962 0 0112 3c0 3.517 1.009 6.799 2.753 9.571m1.247-11.822a8.962 8.962 0 011.247 11.822m-8.455-11.822a8.962 8.962 0 018.455 11.822"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 font-outfit">Security Hardening</h4>
+                    <p class="text-sm text-slate-500 group-hover:text-slate-400">Institutional source protection and RBAC.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCREENSHOT SHOWCASE -->
+    <section id="showcase" class="py-24 bg-navy">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-sm font-bold text-gold uppercase tracking-[0.2em] mb-4 text-center">Interface Preview</h2>
+            <h3 class="text-4xl font-outfit font-bold text-white mb-16 text-center">Visual System Integrity</h3>
+            
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-20">
+                <!-- Card 1 -->
+                <div class="space-y-6">
+                    <div class="laptop-wrapper !p-0">
+                        <div class="laptop-container">
+                            <div class="laptop-screen-bezel">
+                                <div class="laptop-display">
+                                    <img src="assets/reports.png" alt="Reports Dashboard">
+                                </div>
+                            </div>
+                            <div class="laptop-body">
+                                <div class="laptop-notch"></div>
+                            </div>
+                            <div class="laptop-shadow"></div>
+                        </div>
+                    </div>
+                    <p class="text-center text-slate-400 text-sm font-medium">Commercial Intelligence Suite</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="space-y-6">
+                    <div class="laptop-wrapper !p-0">
+                        <div class="laptop-container">
+                            <div class="laptop-screen-bezel">
+                                <div class="laptop-display">
+                                    <img src="assets/dashboard.png" alt="Admin Dashboard">
+                                </div>
+                            </div>
+                            <div class="laptop-body">
+                                <div class="laptop-notch"></div>
+                            </div>
+                            <div class="laptop-shadow"></div>
+                        </div>
+                    </div>
+                    <p class="text-center text-slate-400 text-sm font-medium">Departmental Command Center</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="space-y-6">
+                    <div class="laptop-wrapper !p-0">
+                        <div class="laptop-container">
+                            <div class="laptop-screen-bezel">
+                                <div class="laptop-display">
+                                    <img src="assets/requests.png" alt="Requests Interface">
+                                </div>
+                            </div>
+                            <div class="laptop-body">
+                                <div class="laptop-notch"></div>
+                            </div>
+                            <div class="laptop-shadow"></div>
+                        </div>
+                    </div>
+                    <p class="text-center text-slate-400 text-sm font-medium">Requester Support Intelligence</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="space-y-6">
+                    <div class="laptop-wrapper !p-0">
+                        <div class="laptop-container">
+                            <div class="laptop-screen-bezel">
+                                <div class="laptop-display">
+                                    <img src="assets/units_setup.png" alt="Units Setup">
+                                </div>
+                            </div>
+                            <div class="laptop-body">
+                                <div class="laptop-notch"></div>
+                            </div>
+                            <div class="laptop-shadow"></div>
+                        </div>
+                    </div>
+                    <p class="text-center text-slate-400 text-sm font-medium">Institutional Unit Management</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="space-y-6">
+                    <div class="laptop-wrapper !p-0">
+                        <div class="laptop-container">
+                            <div class="laptop-screen-bezel">
+                                <div class="laptop-display">
+                                    <img src="assets/login.png" alt="Login Interface">
+                                </div>
+                            </div>
+                            <div class="laptop-body">
+                                <div class="laptop-notch"></div>
+                            </div>
+                            <div class="laptop-shadow"></div>
+                        </div>
+                    </div>
+                    <p class="text-center text-slate-400 text-sm font-medium">Bespoke Authentication Portal</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="space-y-6">
+                    <div class="laptop-wrapper !p-0">
+                        <div class="laptop-container">
+                            <div class="laptop-screen-bezel">
+                                <div class="laptop-display">
+                                    <img src="assets/submit_ticket.png" alt="Ticket Submission">
+                                </div>
+                            </div>
+                            <div class="laptop-body">
+                                <div class="laptop-notch"></div>
+                            </div>
+                            <div class="laptop-shadow"></div>
+                        </div>
+                    </div>
+                    <p class="text-center text-slate-400 text-sm font-medium">Unified Request Workflow</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYSTEM WORKFLOW -->
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-sm font-bold text-gold uppercase tracking-[0.2em] mb-4 text-center">Operational Logic</h2>
+            <h3 class="text-4xl font-outfit font-bold text-navy mb-20 text-center">The eTicket Lifecycle</h3>
+            
+            <div class="relative flex flex-wrap justify-center gap-8 lg:gap-0 lg:justify-between items-center">
+                <!-- Connector Line (Desktop Only) -->
+                <div class="hidden lg:block absolute top-1/2 left-0 w-full h-[2px] bg-slate-100 -translate-y-1/2 z-0"></div>
+                
+                <!-- Workflow Step -->
+                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
+                    <div class="w-16 h-16 bg-navy text-white rounded-2xl flex items-center justify-center font-bold text-xl mb-6 shadow-xl shadow-navy/20">01</div>
+                    <h5 class="font-bold text-navy mb-2">Requester</h5>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Ticket Creation via Portal</p>
+                </div>
+                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
+                    <div class="w-16 h-16 bg-white border-2 border-slate-200 text-navy rounded-2xl flex items-center justify-center font-bold text-xl mb-6">02</div>
+                    <h5 class="font-bold text-navy mb-2">Routing</h5>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Intelligent Unit Association</p>
+                </div>
+                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
+                    <div class="w-16 h-16 bg-white border-2 border-slate-200 text-navy rounded-2xl flex items-center justify-center font-bold text-xl mb-6">03</div>
+                    <h5 class="font-bold text-navy mb-2">Assignment</h5>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Officer Queue Population</p>
+                </div>
+                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
+                    <div class="w-16 h-16 bg-white border-2 border-slate-200 text-navy rounded-2xl flex items-center justify-center font-bold text-xl mb-6">04</div>
+                    <h5 class="font-bold text-navy mb-2">Action</h5>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Resolution & Commentary</p>
+                </div>
+                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
+                    <div class="w-16 h-16 bg-gold text-navy rounded-2xl flex items-center justify-center font-bold text-xl mb-6 shadow-xl shadow-gold/20">05</div>
+                    <h5 class="font-bold text-navy mb-2">Closure</h5>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Validated Resolve & Archiving</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYSTEM ARCHITECTURE -->
+    <section id="architecture" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-4xl font-outfit font-bold text-navy mb-16 text-center">Technical Architecture</h3>
+            
+            <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Stack Details -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 h-full">
+                        <h4 class="font-bold text-navy mb-8 flex items-center gap-2">
+                            <span class="w-2 h-6 bg-gold rounded-full"></span>
+                            Technology Stack
+                        </h4>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-3">Backend Engine</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                                    <span class="px-3 py-1.5 bg-slate-100 text-navy rounded-md">Python 3.11</span>
+                                    <span class="px-3 py-1.5 bg-slate-100 text-navy rounded-md">Django 5.x</span>
+                                    <span class="px-3 py-1.5 bg-slate-100 text-navy rounded-md">REST API</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-3">Frontend Architecture</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                                    <span class="px-3 py-1.5 bg-slate-100 text-navy rounded-md">Bootstrap 5.3</span>
+                                    <span class="px-3 py-1.5 bg-slate-100 text-navy rounded-md">Vanilla CSS3</span>
+                                    <span class="px-3 py-1.5 bg-slate-100 text-navy rounded-md">Chart.js</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-3">Data & Infra</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                                    <span class="px-3 py-1.5 bg-slate-100 text-navy rounded-md">PostgreSQL</span>
+                                    <span class="px-3 py-1.5 bg-slate-100 text-navy rounded-md">Redis</span>
+                                    <span class="px-3 py-1.5 bg-slate-100 text-navy rounded-md">Docker</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Architecture Grid -->
+                <div class="lg:col-span-8 bg-navy p-8 lg:p-12 rounded-3xl relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+                    <div class="relative grid md:grid-cols-2 gap-6 h-full">
+                        <div class="p-6 glass rounded-2xl flex flex-col justify-between">
+                            <h5 class="text-gold font-bold text-sm tracking-widest uppercase">Frontend Layer</h5>
+                            <p class="text-white/60 text-sm">Responsive Master Layout Engine with outfit-font typography and real-time JavaScript heartbeat sync.</p>
+                        </div>
+                        <div class="p-6 glass rounded-2xl flex flex-col justify-between">
+                            <h5 class="text-gold font-bold text-sm tracking-widest uppercase">Workflow Engine</h5>
+                            <p class="text-white/60 text-sm">Django Signals & Background Tasks managing SLA policies and automated state transitions.</p>
+                        </div>
+                        <div class="p-6 glass rounded-2xl flex flex-col justify-between">
+                            <h5 class="text-gold font-bold text-sm tracking-widest uppercase">RBAC Security</h5>
+                            <p class="text-white/60 text-sm">5-tier isolation logic ensuring strict data separation across institutional units.</p>
+                        </div>
+                        <div class="p-6 glass rounded-2xl flex flex-col justify-between">
+                            <h5 class="text-gold font-bold text-sm tracking-widest uppercase">Intelligence API</h5>
+                            <p class="text-white/60 text-sm">Aggregated reporting endpoints delivering board-ready XLSX/PDF institutional data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT / RESULTS -->
+    <section id="results" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-sm font-bold text-gold uppercase tracking-[0.2em] mb-4 text-center">Institutional Impact</h2>
+            <h3 class="text-4xl font-outfit font-bold text-navy mb-16 text-center">Measurable Excellence</h3>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-10 border border-slate-100 rounded-3xl bg-slate-50/50 hover:shadow-2xl hover:shadow-slate-200 transition-all text-center">
+                    <div class="text-5xl font-extrabold text-navy mb-4 font-outfit">40%</div>
+                    <h5 class="text-lg font-bold text-navy mb-2">Efficiency Gain</h5>
+                    <p class="text-sm text-slate-500">Reduction in ticket resolution turnaround time through automated routing.</p>
+                </div>
+                <div class="p-10 border border-slate-100 rounded-3xl bg-slate-50/50 hover:shadow-2xl hover:shadow-slate-200 transition-all text-center">
+                    <div class="text-5xl font-extrabold text-navy mb-4 font-outfit">100%</div>
+                    <h5 class="text-lg font-bold text-navy mb-2">Accountability</h5>
+                    <p class="text-sm text-slate-500">Every institutional request is tracked with a full audit trail and ownership history.</p>
+                </div>
+                <div class="p-10 border border-slate-100 rounded-3xl bg-slate-50/50 hover:shadow-2xl hover:shadow-slate-200 transition-all text-center">
+                    <div class="text-5xl font-extrabold text-navy mb-4 font-outfit">Real-Time</div>
+                    <h5 class="text-lg font-bold text-navy mb-2">Visibility</h5>
+                    <p class="text-sm text-slate-500">Institutional leaders now have instant access to service delivery performance KPIs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MY ROLE -->
+    <section class="py-24 bg-navy relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h3 class="text-sm font-bold text-gold uppercase tracking-[0.4em] mb-12">Developer Contribution</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 text-white/80">
+                <div class="space-y-2">
+                    <div class="text-gold text-2xl">⚡</div>
+                    <p class="text-xs font-bold uppercase tracking-widest">System Analysis</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-gold text-2xl">🎨</div>
+                    <p class="text-xs font-bold uppercase tracking-widest">UI/UX Design</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-gold text-2xl">🏗️</div>
+                    <p class="text-xs font-bold uppercase tracking-widest">Architecture</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-gold text-2xl">🗄️</div>
+                    <p class="text-xs font-bold uppercase tracking-widest">DB Design</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-gold text-2xl">🤖</div>
+                    <p class="text-xs font-bold uppercase tracking-widest">Automation</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-gold text-2xl">🛡️</div>
+                    <p class="text-xs font-bold uppercase tracking-widest">Security</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-gold text-2xl">🚀</div>
+                    <p class="text-xs font-bold uppercase tracking-widest">Deployment</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-gold text-2xl">🔧</div>
+                    <p class="text-xs font-bold uppercase tracking-widest">Maintenance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact" class="pt-24 pb-12 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
+                <div class="max-w-md">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-navy rounded-lg flex items-center justify-center text-gold font-bold text-sm">eT</div>
+                        <span class="text-lg font-outfit font-bold">eTicket System</span>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">
+                        A professional case study for the Crescentech College Modernization Initiative. Developed with a focus on high-performance institutional support and executive visibility.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.linkedin.com/in/barasabriston/" target="_blank" class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center hover:bg-navy hover:text-white transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="https://github.com/barasa-briston" target="_blank" class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center hover:bg-navy hover:text-white transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-x-16 gap-y-8">
+                    <div>
+                        <h6 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Connect</h6>
+                        <ul class="text-sm font-medium space-y-4">
+                            <li><a href="mailto:bristonbarasa@gmail.com" class="text-navy hover:text-gold transition-colors">bristonbarasa@gmail.com</a></li>
+                            <li><a href="tel:+254799737398" class="text-navy hover:text-gold transition-colors">+254 799 737 398</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h6 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Location</h6>
+                        <p class="text-sm font-medium text-navy">
+                            Nairobi, Kenya<br>Digital Workspace
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-xs text-slate-400 uppercase tracking-widest">© 2026 Briston Barasa | eTicket System Portfolio. All Rights Reserved.</p>
+                <div class="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">
+                    <span class="text-gold">Validated Architecture</span>
+                    <span>Industry Standard</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple Fade-in on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('opacity-0');
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
