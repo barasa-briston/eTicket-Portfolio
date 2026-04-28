@@ -35,4 +35,4 @@ Built from the ground up, including:
 - Deployment & Maintenance
 
 ---
-**Developed by [CrescentechDev](https://www.linkedin.com/in/barasabriston/)**
+**Developed by [CrescentechSln](https://www.linkedin.com/in/barasabriston/)**
