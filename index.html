@@ -563,35 +563,35 @@
             <h2 class="text-sm font-bold text-gold uppercase tracking-[0.2em] mb-4 text-center">Operational Logic</h2>
             <h3 class="text-4xl font-outfit font-bold text-navy mb-20 text-center">The eTicket Lifecycle</h3>
             
-            <div class="relative flex flex-wrap justify-center gap-8 lg:gap-0 lg:justify-between items-center">
+            <div class="relative grid grid-cols-2 md:grid-cols-3 lg:flex lg:justify-between gap-y-12 gap-x-4 items-start">
                 <!-- Connector Line (Desktop Only) -->
                 <div class="hidden lg:block absolute top-1/2 left-0 w-full h-[2px] bg-slate-100 -translate-y-1/2 z-0"></div>
                 
                 <!-- Workflow Step -->
-                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
-                    <div class="w-16 h-16 bg-navy text-white rounded-2xl flex items-center justify-center font-bold text-xl mb-6 shadow-xl shadow-navy/20">01</div>
-                    <h5 class="font-bold text-navy mb-2">Requester</h5>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Ticket Creation via Portal</p>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-navy text-white rounded-2xl flex items-center justify-center font-bold text-lg mb-4 shadow-xl shadow-navy/20">01</div>
+                    <h5 class="font-bold text-navy mb-1 text-sm">Requester</h5>
+                    <p class="text-[9px] text-slate-400 uppercase tracking-widest leading-relaxed">Ticket Creation</p>
                 </div>
-                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
-                    <div class="w-16 h-16 bg-white border-2 border-slate-200 text-navy rounded-2xl flex items-center justify-center font-bold text-xl mb-6">02</div>
-                    <h5 class="font-bold text-navy mb-2">Routing</h5>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Intelligent Unit Association</p>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-white border-2 border-slate-100 text-navy rounded-2xl flex items-center justify-center font-bold text-lg mb-4">02</div>
+                    <h5 class="font-bold text-navy mb-1 text-sm">Routing</h5>
+                    <p class="text-[9px] text-slate-400 uppercase tracking-widest leading-relaxed">Unit Association</p>
                 </div>
-                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
-                    <div class="w-16 h-16 bg-white border-2 border-slate-200 text-navy rounded-2xl flex items-center justify-center font-bold text-xl mb-6">03</div>
-                    <h5 class="font-bold text-navy mb-2">Assignment</h5>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Officer Queue Population</p>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-white border-2 border-slate-100 text-navy rounded-2xl flex items-center justify-center font-bold text-lg mb-4">03</div>
+                    <h5 class="font-bold text-navy mb-1 text-sm">Assignment</h5>
+                    <p class="text-[9px] text-slate-400 uppercase tracking-widest leading-relaxed">Officer Queue</p>
                 </div>
-                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
-                    <div class="w-16 h-16 bg-white border-2 border-slate-200 text-navy rounded-2xl flex items-center justify-center font-bold text-xl mb-6">04</div>
-                    <h5 class="font-bold text-navy mb-2">Action</h5>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Resolution & Commentary</p>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-white border-2 border-slate-200 text-navy rounded-2xl flex items-center justify-center font-bold text-lg mb-4">04</div>
+                    <h5 class="font-bold text-navy mb-1 text-sm">Action</h5>
+                    <p class="text-[9px] text-slate-400 uppercase tracking-widest leading-relaxed">Resolution</p>
                 </div>
-                <div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
-                    <div class="w-16 h-16 bg-gold text-navy rounded-2xl flex items-center justify-center font-bold text-xl mb-6 shadow-xl shadow-gold/20">05</div>
-                    <h5 class="font-bold text-navy mb-2">Closure</h5>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">Validated Resolve & Archiving</p>
+                <div class="relative z-10 flex flex-col items-center text-center col-span-2 md:col-span-1">
+                    <div class="w-14 h-14 bg-gold text-navy rounded-2xl flex items-center justify-center font-bold text-lg mb-4 shadow-xl shadow-gold/20">05</div>
+                    <h5 class="font-bold text-navy mb-1 text-sm">Closure</h5>
+                    <p class="text-[9px] text-slate-400 uppercase tracking-widest leading-relaxed">Validated Resolve</p>
                 </div>
             </div>
         </div>
